@@ -1,8 +1,6 @@
 package org.example.anoita.materials.abst;
 
-import org.example.anoita.MyRandom;
-import org.example.anoita.materials.abst.Material;
-import org.example.anoita.materials.abst.Move;
+import org.example.anoita.util.MyRandom;
 
 import java.util.*;
 

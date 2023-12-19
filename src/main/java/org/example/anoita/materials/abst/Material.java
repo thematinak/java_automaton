@@ -2,7 +2,7 @@ package org.example.anoita.materials.abst;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
-import org.example.anoita.Model;
+import org.example.anoita.model.Model;
 
 import java.util.List;
 

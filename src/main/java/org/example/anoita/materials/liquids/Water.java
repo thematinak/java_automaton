@@ -2,7 +2,7 @@ package org.example.anoita.materials.liquids;
 
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import org.example.anoita.Model;
+import org.example.anoita.model.Model;
 import org.example.anoita.materials.ables.Flammable;
 import org.example.anoita.materials.ables.Freezeble;
 import org.example.anoita.materials.ables.Wetable;

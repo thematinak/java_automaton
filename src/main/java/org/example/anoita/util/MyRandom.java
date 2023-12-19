@@ -1,4 +1,4 @@
-package org.example.anoita;
+package org.example.anoita.util;
 
 import java.util.Random;
 

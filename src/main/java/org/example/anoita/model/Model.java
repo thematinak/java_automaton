@@ -1,4 +1,4 @@
-package org.example.anoita;
+package org.example.anoita.model;
 
 import kotlin.Pair;
 import org.example.anoita.materials.abst.Move;
