@@ -19,7 +19,6 @@ public abstract class Material {
     protected static final List<Move> ALL_NEIGHBOR = List.of(UP, UP_LEFT, UP_RIGHT, LEFT, RIGHT, DOWN, DOWN_LEFT, DOWN_RIGHT);
 
     public int stepId = -1;
-    private boolean canBeMoved = true;
 
     public void render(GraphicsContext context2d, int row, int col, int size) {
         context2d.setFill(getColor());

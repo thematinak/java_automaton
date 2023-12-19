@@ -9,15 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import org.example.anoita.model.Model;
-import org.example.anoita.materials.liquids.Oil;
-import org.example.anoita.materials.particles.Fire;
-import org.example.anoita.materials.particles.GunPowder;
-import org.example.anoita.materials.particles.Snow;
-import org.example.anoita.materials.solid.Rock;
-import org.example.anoita.materials.abst.Material;
-import org.example.anoita.materials.particles.Sand;
-import org.example.anoita.materials.liquids.Water;
-import org.example.anoita.materials.solid.Wood;
 
 public class Controller {
 
