@@ -4,6 +4,8 @@ import org.example.anoita.util.MyRandom;
 
 import java.util.*;
 
+import static org.example.anoita.materials.abst.Move.*;
+
 public abstract class Liquid extends Material {
 
     protected final static List<Move> movesL = Arrays.asList(DOWN, LEFT, RIGHT);

@@ -2,6 +2,7 @@ package org.example.anoita.controler;
 
 import javafx.scene.canvas.GraphicsContext;
 import org.example.anoita.model.Model;
+import org.example.anoita.model.Player;
 
 public class DrawBord {
 
@@ -18,6 +19,10 @@ public class DrawBord {
             for (int col = 0; col < Model.SIZE.getSecond(); col++) {
                 model.getFromBord(row, col).render(ctx, row, col, SIZE);
             }
+        }
+        Player p = model.getPlayer();
+        if(p != null) {
+            p.render(ctx);
         }
     }
 

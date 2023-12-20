@@ -1,7 +1,5 @@
 package org.example.anoita.controler;
 
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import org.example.anoita.materials.abst.Material;
 import org.example.anoita.materials.liquids.Air;
 import org.example.anoita.materials.liquids.Oil;
@@ -18,10 +16,6 @@ import java.lang.reflect.InvocationTargetException;
 public class ButtonController {
 
     private Class<? extends Material> materialToPut;
-
-    public Class<? extends Material> getMaterialToPut() {
-        return materialToPut;
-    }
 
     public Material getMaterial() {
         try {

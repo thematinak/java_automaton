@@ -2,6 +2,7 @@ package org.example.anoita.model;
 
 import kotlin.Pair;
 import org.example.anoita.materials.abst.Move;
+import org.example.anoita.materials.abst.Solid;
 import org.example.anoita.materials.liquids.Air;
 import org.example.anoita.materials.abst.Material;
 
@@ -16,6 +17,7 @@ public class Model {
     public final static Pair<Integer, Integer> SIZE = new Pair<>(120, 80);
     public Material[][] bord;
     private List<Move> materialIdxs;
+    private Player p;
 
     public Model() {
         bord = new Material[SIZE.getFirst()][SIZE.getSecond()];
@@ -56,8 +58,46 @@ public class Model {
         return bord[row][col];
     }
 
+    public void setPlayer(int row, int col) {
+        if(isInBound(row, col)) {
+            if (p == null) {
+                p = new Player();
+                p.setPos(row, col);
+            } else {
+                p.setPos(row, col);
+            }
+        }
+    }
+
+    public void movePlayer(Move m) {
+        if (p == null) {
+            return;
+        }
+        int newRow = p.getPosRow() + m.getRow();
+        int newCol = p.getPosCol() + m.getCol();
+        if(isInBound(newRow, newCol) && !(bord[newRow][newCol] instanceof Solid)) {
+            p.setPos(newRow, newCol);
+        }
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(Arrays.stream(bord).map(arr -> Arrays.toString(arr) + '\n').toArray());
+    }
+
+    public boolean isInBound(int row, int col) {
+        return isInBoundRow(row) && isInBoundCol(col);
+    }
+
+    public boolean isInBoundRow(int row) {
+        return row > 0 && row < Model.SIZE.getFirst();
+    }
+
+    public boolean isInBoundCol(int col) {
+        return col > 0 && col < Model.SIZE.getSecond();
+    }
+
+    public Player getPlayer() {
+        return p;
     }
 }

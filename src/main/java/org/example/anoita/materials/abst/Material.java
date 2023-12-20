@@ -6,16 +6,10 @@ import org.example.anoita.model.Model;
 
 import java.util.List;
 
+import static org.example.anoita.materials.abst.Move.*;
+
 public abstract class Material {
 
-    protected static final Move UP = new Move(-1, 0);
-    protected static final Move UP_LEFT = new Move(-1, -1);
-    protected static final Move UP_RIGHT = new Move(-1, 1);
-    protected static final Move DOWN = new Move(1, 0);
-    protected static final Move LEFT = new Move(0, -1);
-    protected static final Move RIGHT = new Move(0, 1);
-    protected static final Move DOWN_LEFT = new Move(1, -1);
-    protected static final Move DOWN_RIGHT = new Move(1, 1);
     protected static final List<Move> ALL_NEIGHBOR = List.of(UP, UP_LEFT, UP_RIGHT, LEFT, RIGHT, DOWN, DOWN_LEFT, DOWN_RIGHT);
 
     public int stepId = -1;
@@ -44,7 +38,7 @@ public abstract class Material {
         for (var move : getPossibleMoves()) {
             int nRow = row + move.getRow();
             int nCol= col + move.getCol();
-            if(isInBound(0,nRow, Model.SIZE.getFirst()) && isInBound(0, nCol, Model.SIZE.getSecond())) {
+            if(model.isInBound(nRow, nCol)) {
                 var mat = model.getFromBord(nRow, nCol);
                 if (canMove(mat, move)) {
                     model.swap(row, col, nRow, nCol);
@@ -84,10 +78,6 @@ public abstract class Material {
 
     protected boolean canSwapUp(Material other) {
         return other.getDensity() > getDensity();
-    }
-
-    public static boolean isInBound(int min, int val, int max) {
-        return min <= val && val < max;
     }
 
 }

@@ -1,13 +1,16 @@
 package org.example.anoita.controler;
 
+import com.almasb.fxgl.dsl.FXGL;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import org.example.anoita.materials.abst.Move;
 import org.example.anoita.model.Model;
 
 public class Controller {
@@ -29,6 +32,10 @@ public class Controller {
         buttonController.onTypeClick("WATER");
         model = new Model();
         drawBord = new DrawBord(this);
+        FXGL.onKey(KeyCode.W, "Move UP",       () -> model.movePlayer(Move.UP));
+        FXGL.onKey(KeyCode.S, "Move DOWN",   () -> model.movePlayer(Move.DOWN));
+        FXGL.onKey(KeyCode.A, "Move LEFT",   () -> model.movePlayer(Move.LEFT));
+        FXGL.onKey(KeyCode.D, "Move RIGHT", () -> model.movePlayer(Move.RIGHT));
     }
 
     public void onTick(ActionEvent event) {
@@ -41,8 +48,12 @@ public class Controller {
 
         int rowIdx = drawBord.getRow((int) event.getY());
         int colIdx = drawBord.getCol((int) event.getX());
-        model.putToBord(rowIdx, colIdx, buttonController.getMaterial());
 
+        if(event.getButton().ordinal() == 3) {
+            model.setPlayer(rowIdx, colIdx);
+        } else {
+            model.putToBord(rowIdx, colIdx, buttonController.getMaterial());
+        }
         timeline.play();
     }
 

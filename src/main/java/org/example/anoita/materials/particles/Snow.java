@@ -25,7 +25,7 @@ public class Snow extends Particle implements Flammable {
         for (var move: ALL_NEIGHBOR) {
             int nRow = row + move.getRow();
             int nCol= col + move.getCol();
-            if(isInBound(0,nRow, Model.SIZE.getFirst()) && isInBound(0, nCol, Model.SIZE.getSecond())) {
+            if(model.isInBound(nRow, nCol)) {
                 var mat = model.getFromBord(nRow, nCol);
                 if (mat instanceof Freezeble) {
                     mat.interact(model, nRow, nCol);
