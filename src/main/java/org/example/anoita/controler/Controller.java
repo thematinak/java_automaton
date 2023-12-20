@@ -48,6 +48,9 @@ public class Controller {
 
         int rowIdx = drawBord.getRow((int) event.getY());
         int colIdx = drawBord.getCol((int) event.getX());
+        if (!model.isInBound(rowIdx, colIdx)) {
+            return;
+        }
 
         if(event.getButton().ordinal() == 3) {
             model.setPlayer(rowIdx, colIdx);

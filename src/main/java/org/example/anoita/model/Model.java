@@ -75,9 +75,23 @@ public class Model {
         }
         int newRow = p.getPosRow() + m.getRow();
         int newCol = p.getPosCol() + m.getCol();
-        if(isInBound(newRow, newCol) && !(bord[newRow][newCol] instanceof Solid)) {
+        for(int i =0; i < Player.SIZE;i++) {
+            for (int j = 0; j < Player.SIZE; j++) {
+                if (isInBound(newRow, newCol) && (bord[newRow + i][newCol + j] instanceof Solid)) {
+                    return;
+                }
+            }
+        }
+        if(isInBound(newRow, newCol)) {
             p.setPos(newRow, newCol);
         }
+    }
+
+    public boolean isInPlayer(int row, int col) {
+        if (p == null) {
+            return false;
+        }
+        return p.isInPlayer(row, col);
     }
 
     @Override
@@ -90,11 +104,11 @@ public class Model {
     }
 
     public boolean isInBoundRow(int row) {
-        return row > 0 && row < Model.SIZE.getFirst();
+        return row > -1 && row < Model.SIZE.getFirst();
     }
 
     public boolean isInBoundCol(int col) {
-        return col > 0 && col < Model.SIZE.getSecond();
+        return col > -1 && col < Model.SIZE.getSecond();
     }
 
     public Player getPlayer() {

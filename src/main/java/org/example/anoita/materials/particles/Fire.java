@@ -8,9 +8,10 @@ import org.example.anoita.materials.ables.Wetable;
 import org.example.anoita.materials.abst.Material;
 import org.example.anoita.materials.abst.Particle;
 import org.example.anoita.materials.liquids.Smoke;
+import org.example.anoita.util.MyRandom;
 
 public class Fire extends Particle implements Wetable {
-    int life = 25;
+    int life = 50;
 
     @Override
     public void interact(Model model, int row, int col) {
@@ -38,7 +39,11 @@ public class Fire extends Particle implements Wetable {
 
     @Override
     protected Paint getColor() {
-        return Color.RED;
+        if (MyRandom.getRandom().nextInt(10) < 7) {
+            return Color.RED;
+        } else {
+            return Color.YELLOW;
+        }
     }
 
     @Override

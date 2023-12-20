@@ -39,8 +39,7 @@ public abstract class Material {
             int nRow = row + move.getRow();
             int nCol= col + move.getCol();
             if(model.isInBound(nRow, nCol)) {
-                var mat = model.getFromBord(nRow, nCol);
-                if (canMove(mat, move)) {
+                if (canMove(row, col, move, model)) {
                     model.swap(row, col, nRow, nCol);
                     break;
                 }
@@ -48,7 +47,10 @@ public abstract class Material {
         }
     }
 
-    protected boolean canMove(Material other, Move m) {
+    protected boolean canMove(int row, int col, Move m, Model model) {
+        int nRow = row + m.getRow();
+        int nCol= col + m.getCol();
+        var other = model.getFromBord(nRow, nCol);
         if (m.getRow() < 0) {
             return canSwapUp(other);
         }

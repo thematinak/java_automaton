@@ -6,15 +6,16 @@ import org.example.anoita.controler.DrawBord;
 
 public class Player {
 
+    public final static int SIZE = 5;
     Color fuchsia = Color.rgb(255,0,255);
     int posRow;
     int posCol;
 
+
     public void render(GraphicsContext context2d) {
-        int size = 20;
-        int half = size / 2;
+        final int size = SIZE * DrawBord.SIZE;
         context2d.setFill(fuchsia);
-        context2d.fillRect(posCol * DrawBord.SIZE - half, posRow * DrawBord.SIZE - half, size, size);
+        context2d.fillRect(posCol * DrawBord.SIZE, posRow * DrawBord.SIZE, size, size);
     }
 
     public void setPos(int row, int col) {
@@ -28,5 +29,10 @@ public class Player {
 
     public int getPosCol() {
         return posCol;
+    }
+
+    public boolean isInPlayer(int row, int col) {
+        return (posRow <= row && row < posRow + SIZE)
+                && ((posCol <= col && col < posCol + SIZE));
     }
 }
