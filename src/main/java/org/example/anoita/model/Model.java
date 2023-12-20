@@ -39,7 +39,7 @@ public class Model {
 
         for (int row = Model.SIZE.getFirst() - 1; row >= 0; row--) {
             for (int col = 0; col < Model.SIZE.getSecond(); col++) {
-                getFromBord(row, col).interact(this, row, col);
+                getFromBord(row, col).interact(this, row, col, false);
             }
         }
     }

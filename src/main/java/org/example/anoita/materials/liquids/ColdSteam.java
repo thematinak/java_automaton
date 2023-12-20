@@ -19,7 +19,7 @@ public class ColdSteam extends Liquid {
     }
 
     @Override
-    public void interact(Model model, int row, int col) {
+    public void interact(Model model, int row, int col, boolean interacted) {
         life -= 1;
         if (life < 0) {
             model.putToBord(row, col, new Water());

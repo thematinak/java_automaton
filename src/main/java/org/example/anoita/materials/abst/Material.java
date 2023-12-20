@@ -2,6 +2,7 @@ package org.example.anoita.materials.abst;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Paint;
+import org.example.anoita.materials.ables.*;
 import org.example.anoita.model.Model;
 
 import java.util.List;
@@ -25,7 +26,49 @@ public abstract class Material {
 
     protected abstract List<Move> getPossibleMoves();
 
-    public void interact(Model model, int row, int col) {
+    public void interact(Model model, int row, int col, boolean interacted) {
+        boolean isFlameMaker = this instanceof FlameMaker;
+        boolean isFreezeMaker = this instanceof FreezeMaker;
+        boolean isWetMaker = this instanceof WetMaker;
+        if (!isFlameMaker && !isFreezeMaker && !isWetMaker) {
+            return;
+        }
+        for (var move: ALL_NEIGHBOR) {
+            int nRow = row + move.getRow();
+            int nCol= col + move.getCol();
+            if(model.isInBound(nRow, nCol)) {
+                var mat = model.getFromBord(nRow, nCol);
+                if (isFlameMaker) {
+                    if (mat instanceof Flammable) {
+                        if (!interacted) {
+                            mat.interact(model, nRow, nCol, true);
+                        }
+                        interacted = true;
+                        model.putToBord(nRow, nCol, ((Flammable) mat).setFire());
+                    }
+                }
+                if (isFreezeMaker) {
+                    if (mat instanceof Freezeble) {
+                        if (!interacted) {
+                            mat.interact(model, nRow, nCol, true);
+                            interacted = true;
+                        }
+                        model.putToBord(nRow, nCol, ((Freezeble) mat).setFreeze());
+                    }
+                }
+                if (isWetMaker) {
+                    if (mat instanceof Wetable) {
+                        if (!interacted) {
+                            mat.interact(model, nRow, nCol, true);
+                        }
+                        model.putToBord(nRow, nCol, ((Wetable) mat).setWet());
+                    }
+                }
+            }
+        }
+    }
+
+    public void interactBack(Model model, int row, int col) {
 
     }
 
